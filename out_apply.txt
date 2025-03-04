@@ -1,0 +1,256 @@
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following      
+symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_container.my_container will be created
+  + resource "docker_container" "my_container" {
+      + attach                                      = false
+      + bridge                                      = (known after apply)
+      + command                                     = (known after apply)
+      + container_logs                              = (known after apply)
+      + container_read_refresh_timeout_milliseconds = 15000
+      + entrypoint                                  = (known after apply)
+      + env                                         = (known after apply)
+      + exit_code                                   = (known after apply)
+      + hostname                                    = (known after apply)
+      + id                                          = (known after apply)
+      + image                                       = "node"
+      + init                                        = (known after apply)
+      + ipc_mode                                    = (known after apply)
+      + log_driver                                  = (known after apply)
+      + logs                                        = false
+      + must_run                                    = true
+      + name                                        = "my-express-app"
+      + network_data                                = (known after apply)
+      + read_only                                   = false
+      + remove_volumes                              = true
+      + restart                                     = "no"
+      + rm                                          = false
+      + runtime                                     = (known after apply)
+      + security_opts                               = (known after apply)
+      + shm_size                                    = (known after apply)
+      + start                                       = true
+      + stdin_open                                  = false
+      + stop_signal                                 = (known after apply)
+      + stop_timeout                                = (known after apply)
+      + tty                                         = false
+      + wait                                        = false
+      + wait_timeout                                = 60
+
+      + healthcheck (known after apply)
+
+      + labels (known after apply)
+
+      + ports {
+          + external = 3000
+          + internal = 3000
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+    }
+
+  # docker_image.my_app will be created
+  + resource "docker_image" "my_app" {
+      + id          = (known after apply)
+      + image_id    = (known after apply)
+      + name        = "node"
+      + repo_digest = (known after apply)
+    }
+
+  # null_resource.build_docker_image will be created
+  + resource "null_resource" "build_docker_image" {
+      + id = (known after apply)
+    }
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+null_resource.build_docker_image: Creating...
+null_resource.build_docker_image: Provisioning with 'local-exec'...
+null_resource.build_docker_image (local-exec): Executing: ["cmd" "/C" "docker build -t node -f Dockerfile ."]
+null_resource.build_docker_image (local-exec): #0 building with "desktop-linux" instance using docker driver
+
+null_resource.build_docker_image (local-exec): #1 [internal] load build definition from Dockerfile
+null_resource.build_docker_image (local-exec): #1 transferring dockerfile: 181B 0.0s done
+null_resource.build_docker_image (local-exec): #1 DONE 0.0s
+
+null_resource.build_docker_image (local-exec): #2 [internal] load metadata for docker.io/library/node:18
+null_resource.build_docker_image (local-exec): #2 ...
+
+null_resource.build_docker_image (local-exec): #3 [auth] library/node:pull token for registry-1.docker.io
+null_resource.build_docker_image (local-exec): #3 DONE 0.0s
+
+null_resource.build_docker_image (local-exec): #2 [internal] load metadata for docker.io/library/node:18
+null_resource.build_docker_image (local-exec): #2 DONE 7.0s
+
+null_resource.build_docker_image (local-exec): #4 [internal] load .dockerignore
+null_resource.build_docker_image (local-exec): #4 transferring context: 107B 0.0s done
+null_resource.build_docker_image (local-exec): #4 DONE 0.0s
+
+null_resource.build_docker_image (local-exec): #5 [1/5] FROM docker.io/library/node:18@sha256:ba756f198b4b1e0114b53b23121c8ae27f7ae4d5d95ca4a0554b0649cc9c7dcf
+null_resource.build_docker_image (local-exec): #5 resolve docker.io/library/node:18@sha256:ba756f198b4b1e0114b53b23121c8ae27f7ae4d5d95ca4a0554b0649cc9c7dcf 0.0s done
+null_resource.build_docker_image (local-exec): #5 ...
+
+null_resource.build_docker_image (local-exec): #6 [internal] load build context
+null_resource.build_docker_image (local-exec): #6 transferring context: 896.61kB 0.1s done
+null_resource.build_docker_image (local-exec): #6 DONE 0.1s
+
+null_resource.build_docker_image (local-exec): #5 [1/5] FROM docker.io/library/node:18@sha256:ba756f198b4b1e0114b53b23121c8ae27f7ae4d5d95ca4a0554b0649cc9c7dcf
+null_resource.build_docker_image (local-exec): #5 sha256:c8728cb69dce1bba4cb95cbaa0e0ae129482b9428acce138dcbab3176854f8d9 0B / 447B 0.2s
+null_resource.build_docker_image (local-exec): #5 sha256:396e9c5702ad97405a8485ee635a41c2c4fdbb6636cec4df8bde46e611f0af68 0B / 1.25MB 0.2s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 0B / 45.70MB 0.2s
+null_resource.build_docker_image (local-exec): #5 sha256:f87facc2c491970afc16ec1d15bc7a2be960b00caa9467613baf0ac87d4e7bdf 0B / 3.32kB 0.2s
+null_resource.build_docker_image (local-exec): #5 sha256:c8728cb69dce1bba4cb95cbaa0e0ae129482b9428acce138dcbab3176854f8d9 447B / 447B 1.0s done
+null_resource.build_docker_image (local-exec): #5 sha256:f87facc2c491970afc16ec1d15bc7a2be960b00caa9467613baf0ac87d4e7bdf 3.32kB / 3.32kB 0.9s done
+null_resource.build_docker_image (local-exec): #5 sha256:396e9c5702ad97405a8485ee635a41c2c4fdbb6636cec4df8bde46e611f0af68 1.25MB / 1.25MB 1.0s done
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 0B / 211.34MB 0.2s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 0B / 64.39MB 0.2s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 0B / 24.06MB 0.2s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 3.15MB / 45.70MB 1.4s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 6.29MB / 45.70MB 1.7s
+null_resource.build_docker_image: Still creating... [10s elapsed]
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 9.44MB / 45.70MB 2.0s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 12.58MB / 45.70MB 2.2s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 15.73MB / 45.70MB 2.6s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 18.87MB / 45.70MB 3.0s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 2.10MB / 24.06MB 2.0s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 22.02MB / 45.70MB 3.3s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 11.53MB / 211.34MB 2.6s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 4.19MB / 64.39MB 2.6s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 25.17MB / 45.70MB 3.6s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 28.31MB / 45.70MB 3.9s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 4.19MB / 24.06MB 2.9s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 32.51MB / 45.70MB 4.2s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 35.65MB / 45.70MB 4.5s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 38.80MB / 45.70MB 4.7s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 41.94MB / 45.70MB 4.9s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 8.39MB / 64.39MB 4.1s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 6.29MB / 24.06MB 3.9s
+null_resource.build_docker_image (local-exec): #5 sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 45.70MB / 45.70MB 5.3s done
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 0B / 48.48MB 0.2s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 23.07MB / 211.34MB 4.7s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 8.39MB / 24.06MB 4.8s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 12.58MB / 64.39MB 5.1s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 10.49MB / 24.06MB 5.4s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 3.15MB / 48.48MB 1.2s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 34.60MB / 211.34MB 5.9s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 6.29MB / 48.48MB 1.5s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 9.44MB / 48.48MB 1.8s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 16.78MB / 64.39MB 6.3s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 12.58MB / 24.06MB 6.2s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 12.58MB / 48.48MB 2.1s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 15.73MB / 48.48MB 2.4s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 14.68MB / 24.06MB 6.8s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 18.87MB / 48.48MB 2.7s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 20.97MB / 64.39MB 7.4s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 23.07MB / 48.48MB 3.0s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 46.14MB / 211.34MB 7.5s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 16.78MB / 24.06MB 7.5s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 26.21MB / 48.48MB 3.3s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 29.36MB / 48.48MB 3.6s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 25.17MB / 64.39MB 8.3s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 32.51MB / 48.48MB 3.9s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 18.87MB / 24.06MB 8.4s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 36.70MB / 48.48MB 4.2s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 39.85MB / 48.48MB 4.5s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 57.67MB / 211.34MB 9.2s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 20.97MB / 24.06MB 9.0s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 29.36MB / 64.39MB 9.3s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 44.04MB / 48.48MB 5.1s
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 23.07MB / 24.06MB 9.6s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 47.19MB / 48.48MB 5.4s
+null_resource.build_docker_image (local-exec): #5 sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 48.48MB / 48.48MB 5.6s done
+null_resource.build_docker_image (local-exec): #5 sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 24.06MB / 24.06MB 10.0s done
+null_resource.build_docker_image (local-exec): #5 extracting sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc   
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 33.55MB / 64.39MB 10.1s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 70.25MB / 211.34MB 10.5s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 37.75MB / 64.39MB 10.7s
+null_resource.build_docker_image: Still creating... [20s elapsed]
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 82.84MB / 211.34MB 11.4s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 41.94MB / 64.39MB 11.3s
+null_resource.build_docker_image (local-exec): #5 extracting sha256:155ad54a8b2812a0ec559ff82c0c6f0f0dddb337a226b11879f09e15f67b69fc 1.7s done
+null_resource.build_docker_image (local-exec): #5 extracting sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b   
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 46.14MB / 64.39MB 12.0s
+null_resource.build_docker_image (local-exec): #5 extracting sha256:8031108f3cda87bb32f090262d0109c8a0db99168050967becefad502e9a681b 0.5s done
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 95.42MB / 211.34MB 12.6s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 50.33MB / 64.39MB 12.5s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 55.57MB / 64.39MB 13.1s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 106.95MB / 211.34MB 13.5s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 59.77MB / 64.39MB 13.5s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 63.96MB / 64.39MB 13.8s
+null_resource.build_docker_image (local-exec): #5 sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 64.39MB / 64.39MB 13.9s done
+null_resource.build_docker_image (local-exec): #5 extracting sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b   
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 118.49MB / 211.34MB 14.3s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 131.58MB / 211.34MB 14.9s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 143.65MB / 211.34MB 15.5s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 157.29MB / 211.34MB 16.1s
+null_resource.build_docker_image (local-exec): #5 extracting sha256:1d281e50d3e435595c266df06531a7e8c2ebb0c185622c8ab2eed8d760e6576b 2.1s done
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 170.92MB / 211.34MB 16.7s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 184.55MB / 211.34MB 17.3s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 197.13MB / 211.34MB 17.9s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 210.76MB / 211.34MB 18.5s
+null_resource.build_docker_image (local-exec): #5 sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 211.34MB / 211.34MB 18.7s done
+null_resource.build_docker_image (local-exec): #5 extracting sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4
+null_resource.build_docker_image: Still creating... [30s elapsed]
+null_resource.build_docker_image (local-exec): #5 extracting sha256:447713e77b4fc3658cfba0c1e816b70ff6d9bf06563dc8cfcb0459406aed33b4 4.0s done
+null_resource.build_docker_image (local-exec): #5 DONE 23.8s
+
+null_resource.build_docker_image (local-exec): #5 [1/5] FROM docker.io/library/node:18@sha256:ba756f198b4b1e0114b53b23121c8ae27f7ae4d5d95ca4a0554b0649cc9c7dcf
+null_resource.build_docker_image (local-exec): #5 extracting sha256:f87facc2c491970afc16ec1d15bc7a2be960b00caa9467613baf0ac87d4e7bdf 0.0s done
+null_resource.build_docker_image (local-exec): #5 extracting sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc   
+null_resource.build_docker_image (local-exec): #5 extracting sha256:2f9475d0583b480d241fbc3e81dccb2c8328ed6cbe28553bdcf241b4ae3c3edc 1.5s done
+null_resource.build_docker_image (local-exec): #5 DONE 25.3s
+
+null_resource.build_docker_image (local-exec): #5 [1/5] FROM docker.io/library/node:18@sha256:ba756f198b4b1e0114b53b23121c8ae27f7ae4d5d95ca4a0554b0649cc9c7dcf
+null_resource.build_docker_image (local-exec): #5 extracting sha256:396e9c5702ad97405a8485ee635a41c2c4fdbb6636cec4df8bde46e611f0af68 0.0s done
+null_resource.build_docker_image (local-exec): #5 extracting sha256:c8728cb69dce1bba4cb95cbaa0e0ae129482b9428acce138dcbab3176854f8d9 0.0s done
+null_resource.build_docker_image (local-exec): #5 DONE 25.4s
+
+null_resource.build_docker_image (local-exec): #7 [2/5] WORKDIR /app
+null_resource.build_docker_image (local-exec): #7 DONE 1.0s
+
+null_resource.build_docker_image (local-exec): #8 [3/5] COPY package.json package-lock.json ./
+null_resource.build_docker_image (local-exec): #8 DONE 0.0s
+
+null_resource.build_docker_image (local-exec): #9 [4/5] RUN npm install
+null_resource.build_docker_image (local-exec): #9 0.739 npm warn old lockfile
+null_resource.build_docker_image (local-exec): #9 0.739 npm warn old lockfile The package-lock.json file was created with an old version of npm,
+null_resource.build_docker_image (local-exec): #9 0.739 npm warn old lockfile so supplemental metadata must be fetched from the registry.
+null_resource.build_docker_image (local-exec): #9 0.739 npm warn old lockfile
+null_resource.build_docker_image (local-exec): #9 0.739 npm warn old lockfile This is a one-time fix-up, please be patient...
+null_resource.build_docker_image (local-exec): #9 0.739 npm warn old lockfile
+null_resource.build_docker_image (local-exec): #9 2.062
+null_resource.build_docker_image (local-exec): #9 2.062 added 69 packages, and audited 70 packages in 2s
+null_resource.build_docker_image (local-exec): #9 2.062
+null_resource.build_docker_image (local-exec): #9 2.062 14 packages are looking for funding
+null_resource.build_docker_image (local-exec): #9 2.062   run `npm fund` for details
+null_resource.build_docker_image (local-exec): #9 2.063
+null_resource.build_docker_image (local-exec): #9 2.063 found 0 vulnerabilities
+null_resource.build_docker_image (local-exec): #9 2.064 npm notice
+null_resource.build_docker_image (local-exec): #9 2.064 npm notice New major version of npm available! 10.8.2 -> 11.1.0
+null_resource.build_docker_image (local-exec): #9 2.064 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.1.0
+null_resource.build_docker_image (local-exec): #9 2.064 npm notice To update run: npm install -g npm@11.1.0
+null_resource.build_docker_image (local-exec): #9 2.064 npm notice
+null_resource.build_docker_image (local-exec): #9 DONE 2.2s
+
+null_resource.build_docker_image (local-exec): #10 [5/5] COPY . .
+null_resource.build_docker_image (local-exec): #10 DONE 0.1s
+
+null_resource.build_docker_image (local-exec): #11 exporting to image
+null_resource.build_docker_image (local-exec): #11 exporting layers
+null_resource.build_docker_image (local-exec): #11 exporting layers 0.3s done
+null_resource.build_docker_image (local-exec): #11 exporting manifest sha256:0583be290fc239058a6ee9fff63cc1862681cd117c46c3aa76c8d35996fb6995 0.0s done
+null_resource.build_docker_image (local-exec): #11 exporting config sha256:27ff402b5ff9c285ddf3c64f7f934228f55b685ac32bea31d9facef776add4af 0.0s done
+null_resource.build_docker_image (local-exec): #11 exporting attestation manifest sha256:5dbf2b7f09cf80d8db3e75477a20a3dbfbd63e9facc3599a1a7bde20557a6039 0.0s done
+null_resource.build_docker_image (local-exec): #11 exporting manifest list sha256:e74fae5735d4c4246d09622d8bd4bd73ff0fb5071361abfbf456c09b0a14e6a8 0.0s done
+null_resource.build_docker_image (local-exec): #11 naming to docker.io/library/node:latest done
+null_resource.build_docker_image (local-exec): #11 unpacking to docker.io/library/node:latest
+null_resource.build_docker_image (local-exec): #11 unpacking to docker.io/library/node:latest 0.4s done
+null_resource.build_docker_image (local-exec): #11 DONE 0.7s
+null_resource.build_docker_image: Creation complete after 38s [id=5914874506736197878]
+docker_image.my_app: Creating...
+docker_image.my_app: Creation complete after 0s [id=sha256:e74fae5735d4c4246d09622d8bd4bd73ff0fb5071361abfbf456c09b0a14e6a8node]
+docker_container.my_container: Creating...
+docker_container.my_container: Creation complete after 1s [id=6035767c063129c2c9cd2f0d8f1709d99fb8370cc6a9e5fb6fcac0454ce9a0e3]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
